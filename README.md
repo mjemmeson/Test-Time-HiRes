@@ -4,6 +4,7 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
 
 # SYNOPSIS
 
+    # ensure loaded before any code importing functions from Time::HiRes
     use Test::Time::HiRes time => 123.456789;
 
     # Freeze time
@@ -22,6 +23,8 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
 
 Drop-in replacement for [Test::Time](https://metacpan.org/pod/Test::Time) that also works with the [Time::HiRes](https://metacpan.org/pod/Time::HiRes)
 functions `usleep` and `gettimeofday`.
+
+Must be loaded before importing functions from [Time::HiRes](https://metacpan.org/pod/Time::HiRes).
 
 # SEE ALSO
 
