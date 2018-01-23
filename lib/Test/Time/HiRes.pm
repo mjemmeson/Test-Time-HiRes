@@ -9,8 +9,8 @@ use Time::HiRes ();
 
 our $VERSION = '0.01';
 
-our $time;    # epoch in microseconds
-our $seconds;         # i.e. standard epoch
+our $time    = 0;    # epoch in microseconds
+our $seconds = 0;    # i.e. standard epoch
 
 my $in_effect = 1;
 
@@ -39,16 +39,24 @@ sub _seconds {
 }
 
 sub _microseconds {
+    return 0 unless $time;
     return $time - ( $seconds * 1_000_000 );
 }
 
 sub import {
     my ( $class, %opts ) = @_;
 
-    my $tmp = $opts{time} if defined $opts{time};
-
-    $Test::Time::time = $seconds = int($tmp);
-    $time = $tmp * 1_000_000;
+    # If time set on import then use it and update
+    # Test::Time, otherwise use $Test::Time::time
+    if ( defined $opts{time} ) {
+        my $tmp = $opts{time};
+        $Test::Time::time = $seconds = int($tmp);
+        $time = $tmp * 1_000_000;
+    }
+    else {
+        $seconds = $Test::Time::time;
+        $time    = $seconds * 1_000_000;
+    }
 
     no warnings 'redefine';
 
@@ -114,6 +122,7 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
 
 =head1 SYNOPSIS
 
+    # ensure loaded before any code importing functions from Time::HiRes
     use Test::Time::HiRes time => 123.456789;
 
     # Freeze time
@@ -132,6 +141,8 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
 
 Drop-in replacement for L<Test::Time> that also works with the L<Time::HiRes>
 functions C<usleep> and C<gettimeofday>.
+
+Must be loaded before importing functions from L<Time::HiRes>.
 
 =head1 SEE ALSO
 
