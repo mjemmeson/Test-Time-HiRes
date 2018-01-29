@@ -133,7 +133,7 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
     sleep 1;        # seconds
     usleep 1000;    # microseconds
 
-    # Return internal time incremented by 1.001 s
+    # Return internal time incremented by 1.001s
     my $then       = time();
     my $then_hires = Time::HiRes::time();
 
@@ -143,6 +143,8 @@ Drop-in replacement for L<Test::Time> that also works with the L<Time::HiRes>
 functions C<usleep> and C<gettimeofday>.
 
 Must be loaded before importing functions from L<Time::HiRes>.
+
+Patches/suggestions very welcome. This was just a quick fix to a problem.
 
 =head1 SEE ALSO
 
