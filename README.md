@@ -15,7 +15,7 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
     sleep 1;        # seconds
     usleep 1000;    # microseconds
 
-    # Return internal time incremented by 1.001 s
+    # Return internal time incremented by 1.001s
     my $then       = time();
     my $then_hires = Time::HiRes::time();
 
@@ -25,6 +25,8 @@ Drop-in replacement for [Test::Time](https://metacpan.org/pod/Test::Time) that a
 functions `usleep` and `gettimeofday`.
 
 Must be loaded before importing functions from [Time::HiRes](https://metacpan.org/pod/Time::HiRes).
+
+Patches/suggestions very welcome. This was just a quick fix to a problem.
 
 # SEE ALSO
 
