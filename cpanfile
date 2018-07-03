@@ -1,4 +1,3 @@
-requires "Scalar::Util";
 requires "Test::More";
 requires "Test::Time";
 requires "Time::HiRes";
