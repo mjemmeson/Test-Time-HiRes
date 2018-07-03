@@ -19,6 +19,11 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
     my $then       = time();
     my $then_hires = Time::HiRes::time();
 
+    # set/reset time
+    Test::Time::HiRes->set_time( 123.456789 );
+
+    Test::Time::HiRes->unimport(); # turn off behaviour
+
 # DESCRIPTION
 
 Drop-in replacement for [Test::Time](https://metacpan.org/pod/Test::Time) that also works with the [Time::HiRes](https://metacpan.org/pod/Time::HiRes)
