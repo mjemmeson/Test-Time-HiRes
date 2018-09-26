@@ -52,6 +52,8 @@ sub import {
     my ( $class, %opts ) = @_;
 
     $in_effect = 1;
+    Test::Time->import; # make sure Test::Time is enabled, in case
+                        # there was a call to ->unimport earlier
 
     return if $imported;
 
