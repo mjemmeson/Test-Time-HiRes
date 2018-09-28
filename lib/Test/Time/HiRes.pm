@@ -7,7 +7,7 @@ use Test::More;
 use Test::Time;
 use Time::HiRes ();
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 our $time    = 0;    # epoch in microseconds
 our $seconds = 0;    # i.e. standard epoch
@@ -198,6 +198,10 @@ L<https://github.com/mjemmeson/Test-Time-HiRes>
 =head1 AUTHOR
 
 Michael Jemmeson E<lt>mjemmeson@cpan.orgE<gt>
+
+=head1 CONTRIBUTORS
+
+Gianni Ceccarelli E<lt>dakkar@thenautilus.netE<gt>
 
 =head1 COPYRIGHT
 

@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+ - making import() work after unimport() - thanks: dakkar
+
 0.03  2018-07-03 16:36:54 BST
 
  - adding unimport()
