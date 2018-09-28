@@ -58,6 +58,10 @@ public review and contribution under the terms of the license.
 
 Michael Jemmeson <mjemmeson@cpan.org>
 
+# CONTRIBUTORS
+
+Gianni Ceccarelli <dakkar@thenautilus.net>
+
 # COPYRIGHT
 
 Copyright 2018- Michael Jemmeson
