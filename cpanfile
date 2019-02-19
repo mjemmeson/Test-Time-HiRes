@@ -1,3 +1,4 @@
+requires "POSIX";
 requires "Test::More";
 requires "Test::Time" => "0.07";
 requires "Time::HiRes";

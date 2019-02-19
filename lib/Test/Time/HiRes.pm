@@ -3,6 +3,7 @@ package Test::Time::HiRes;
 use strict;
 use warnings;
 
+use POSIX qw( floor );
 use Test::More;
 use Test::Time;
 use Time::HiRes ();
@@ -22,7 +23,7 @@ sub in_effect {
 sub set_time {
     my ( $class, $arg ) = @_;
 
-    $Test::Time::time = $seconds = int($arg);    # epoch time in seconds
+    $Test::Time::time = $seconds = floor($arg);    # epoch time in seconds
     $time = $arg * 1_000_000;                    # epoch time in microseconds
 }
 
@@ -36,7 +37,7 @@ sub _synchronise_times {
         # update seconds from Test::Time, but keep the fractional microsecond part
         my $microseconds = _microseconds();    # part after DP
         $seconds = $Test::Time::time;
-        $time    = ( $seconds * 1_000_000 ) + $microseconds;
+        $time    = ($seconds * 1_000_000) + $microseconds;
     }
     elsif ( $seconds > $Test::Time::time ) {
         $Test::Time::time = $seconds;
@@ -100,7 +101,7 @@ sub import {
             return 0 unless $sleep;
 
             $time    = $time + $sleep;
-            $seconds = int( $time / 1_000_000 );
+            $seconds = floor( $time / 1_000_000 );
 
             _synchronise_times();
 
