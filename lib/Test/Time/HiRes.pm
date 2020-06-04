@@ -7,7 +7,7 @@ use Test::More;
 use Test::Time;
 use Time::HiRes ();
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 our $time    = 0;    # epoch in microseconds
 our $seconds = 0;    # i.e. standard epoch
@@ -209,6 +209,7 @@ Michael Jemmeson E<lt>mjemmeson@cpan.orgE<gt>
 =head1 CONTRIBUTORS
 
 Gianni Ceccarelli E<lt>dakkar@thenautilus.netE<gt>
+Theo van Hoesel E<lt>Th.J.v.Hoesel+CPAN@gmail.com<gt>
 
 =head1 COPYRIGHT
 
