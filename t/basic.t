@@ -1,7 +1,6 @@
 use strict;
 use warnings;
 use Test::More;
-use Test::Deep;
 use Time::HiRes;
 use Test::Time::HiRes time => 123.056789;
 
