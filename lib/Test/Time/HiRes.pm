@@ -48,12 +48,18 @@ sub _microseconds {
     return $time % 1_000_000;
 }
 
+sub _float {
+    return 0 unless $time;
+    my $t = $time / 1_000_000;
+    return sprintf( "%.6f", $t ) + 0;
+}
+
 sub import {
     my ( $class, %opts ) = @_;
 
     $in_effect = 1;
-    Test::Time->import; # make sure Test::Time is enabled, in case
-                        # there was a call to ->unimport earlier
+    Test::Time->import;    # make sure Test::Time is enabled, in case
+                           # there was a call to ->unimport earlier
 
     return if $imported;
 
@@ -78,8 +84,7 @@ sub import {
         if (in_effect) {
             _synchronise_times();
 
-            my $t = $time / 1_000_000;
-            return sprintf( "%.6f", $t );
+            return _float();
         }
         else {
             return $sub_time->();
@@ -118,11 +123,7 @@ sub import {
         if (in_effect) {
             _synchronise_times();
 
-            return
-                wantarray
-                ? ( $seconds, _microseconds() )
-                : sprintf( "%.6f", $time / 1_000_000 ); # float, like time()
-
+            return wantarray ? ( $seconds, _microseconds() ) : _float();
         }
         else {
             return $sub_gettimeofday->();
