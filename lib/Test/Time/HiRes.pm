@@ -114,9 +114,15 @@ sub import {
     };
 
     *Time::HiRes::gettimeofday = sub() {
+
         if (in_effect) {
             _synchronise_times();
-            return ( $seconds, _microseconds() );
+
+            return
+                wantarray
+                ? ( $seconds, _microseconds() )
+                : sprintf( "%.6f", $time / 1_000_000 ); # float, like time()
+
         }
         else {
             return $sub_gettimeofday->();

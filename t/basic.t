@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use Test::Deep;
 use Time::HiRes;
 use Test::Time::HiRes time => 123.456789;
 
@@ -10,6 +11,9 @@ subtest initial_time => sub {
 
     is_deeply [ Time::HiRes::gettimeofday() ], [ 123, 456789 ],
         'Time::HiRes::gettimeofday from initial time';
+
+    is scalar( Time::HiRes::gettimeofday() ) . "", '123.456789',
+        'scalar Time::HiRes::gettimeofday from initial time';
 
     is Test::Time::HiRes::_microseconds(), '456789', '_microseconds ok';
 };
@@ -25,6 +29,9 @@ subtest real_sleep => sub {
         'apparent Time::HiRes::time unchanged after changes in real time';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 123, 456789 ],
         'Time::HiRes::gettimeofday unchanged';
+
+    is scalar( Time::HiRes::gettimeofday() ) . "", '123.456789',
+        'scalar Time::HiRes::gettimeofday unchanged';
 };
 
 subtest fake_sleep => sub {
@@ -36,6 +43,8 @@ subtest fake_sleep => sub {
     is Time::HiRes::time(), 124.456789, 'apparent Time::HiRes::time updated after sleep';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 124, 456789 ],
         'Time::HiRes::gettimeofday unchanged';
+    is scalar( Time::HiRes::gettimeofday() ) . "", '124.456789',
+        'scalar Time::HiRes::gettimeofday unchanged';
 };
 
 subtest fake_usleep => sub {
@@ -47,18 +56,24 @@ subtest fake_usleep => sub {
         'apparent Time::HiRes::time not updated after empty usleep';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 123, 456789 ],
         'Time::HiRes::gettimeofday not updated after empty usleep';
+    is scalar( Time::HiRes::gettimeofday() ) . "", '123.456789',
+        'scalar Time::HiRes::gettimeofday not updated after empty usleep';
 
     Time::HiRes::usleep 1;
     is Time::HiRes::time(), '123.456790',
         'apparent Time::HiRes::time updated after usleep';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 123, 456790 ],
         'Time::HiRes::gettimeofday updated after usleep';
+    is scalar( Time::HiRes::gettimeofday() ) . "", '123.456790',
+        'scalar Time::HiRes::gettimeofday updated usleep';
 
     Time::HiRes::usleep 1000;
     is Time::HiRes::time(), '123.457790',
         'apparent Time::HiRes::time updated after usleep';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 123, 457790 ],
         'Time::HiRes::gettimeofday updated after usleep';
+    is scalar( Time::HiRes::gettimeofday() ) . "", '123.457790',
+        'scalar Time::HiRes::gettimeofday after usleep';
 
     Time::HiRes::usleep 2_000_000;
     is time(), 125, "time updated after usleep()";
@@ -66,6 +81,8 @@ subtest fake_usleep => sub {
         'apparent Time::HiRes::time updated after usleep';
     is_deeply [ Time::HiRes::gettimeofday() ], [ 125, 457790 ],
         'Time::HiRes::gettimeofday updated after usleep';
+    is scalar( Time::HiRes::gettimeofday() ) . "", '125.457790',
+        'scalar Time::HiRes::gettimeofday after usleep';
 };
 
 subtest 'synchronises with Test::Time' => sub {
@@ -79,6 +96,9 @@ subtest 'synchronises with Test::Time' => sub {
 
     is_deeply [ Time::HiRes::gettimeofday() ], [ 20_000, 456789 ],
         'Time::HiRes::gettimeofday correct';
+
+    is scalar( Time::HiRes::gettimeofday() ) . "", '20000.456789',
+        'scalar Time::HiRes::gettimeofday correct';
 
     is Test::Time::HiRes::_microseconds(), '456789', '_microseconds ok';
 };

@@ -8,6 +8,7 @@ requires "warnings";
 on 'test' => sub {
     requires "ExtUtils::MakeMaker";
     requires "Test::More" => "0.96";
+    requires "Test::Deep";
     requires "lib";
     requires "strict";
     requires "warnings";
