@@ -26,16 +26,16 @@ Test::Time::HiRes - drop-in replacement for Test::Time to work with Time::HiRes
 
 # DESCRIPTION
 
-Drop-in replacement for [Test::Time](https://metacpan.org/pod/Test::Time) that also works with the [Time::HiRes](https://metacpan.org/pod/Time::HiRes)
+Drop-in replacement for [Test::Time](https://metacpan.org/pod/Test%3A%3ATime) that also works with the [Time::HiRes](https://metacpan.org/pod/Time%3A%3AHiRes)
 functions `usleep` and `gettimeofday`.
 
-Must be loaded before importing functions from [Time::HiRes](https://metacpan.org/pod/Time::HiRes).
+Must be loaded before importing functions from [Time::HiRes](https://metacpan.org/pod/Time%3A%3AHiRes).
 
 Patches/suggestions very welcome. This was just a quick fix to a problem.
 
 # SEE ALSO
 
-- [Test::Time](https://metacpan.org/pod/Test::Time)
+- [Test::Time](https://metacpan.org/pod/Test%3A%3ATime)
 
 # SUPPORT
 
@@ -61,6 +61,7 @@ Michael Jemmeson <mjemmeson@cpan.org>
 # CONTRIBUTORS
 
 Gianni Ceccarelli <dakkar@thenautilus.net>
+Theo van Hoesel <Th.J.v.Hoesel+CPAN@gmail.com&lt;gt>
 
 # COPYRIGHT
 

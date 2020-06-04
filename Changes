@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.05  2020-06-04 21:25:08 BST
+
  - time() returns a number, not a formatted string - thanks: vanhoesel
  - gettimeofday() can be called in scalar context - thanks: vanhoesel
 
