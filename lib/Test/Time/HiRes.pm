@@ -209,6 +209,7 @@ Michael Jemmeson E<lt>mjemmeson@cpan.orgE<gt>
 =head1 CONTRIBUTORS
 
 Gianni Ceccarelli E<lt>dakkar@thenautilus.netE<gt>
+
 Theo van Hoesel E<lt>Th.J.v.Hoesel+CPAN@gmail.com<gt>
 
 =head1 COPYRIGHT
